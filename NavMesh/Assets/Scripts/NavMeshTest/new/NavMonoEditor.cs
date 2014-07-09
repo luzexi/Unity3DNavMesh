@@ -18,7 +18,7 @@ namespace Game.NavMesh
 	{
 		private List<Triangle> m_lstTriangle = new List<Triangle>();
 
-		public bool m_bShowMesh;	//is show mesh
+		public bool m_bShowMesh = true;	//is show mesh
 		public int m_iSelGroup;	//the selected group
 		public int m_iSelArea;	//the selected area
 		public int m_iSelPoint;	//the selected point
@@ -151,10 +151,10 @@ namespace Game.NavMesh
 						}
 						else if (tri.GetGroupID() == 2)
 							Gizmos.color = Color.black;
-						
-						Vector3 p1 = new Vector3(tri.GetPoint(0).x, 100, tri.GetPoint(0).y);
-						Vector3 p2 = new Vector3(tri.GetPoint(1).x, 100, tri.GetPoint(1).y);
-						Vector3 p3 = new Vector3(tri.GetPoint(2).x, 100, tri.GetPoint(2).y);
+
+						Vector3 p1 = new Vector3(tri.GetPoint(0).x, 0, tri.GetPoint(0).y);
+						Vector3 p2 = new Vector3(tri.GetPoint(1).x, 0, tri.GetPoint(1).y);
+						Vector3 p3 = new Vector3(tri.GetPoint(2).x, 0, tri.GetPoint(2).y);
 						Gizmos.DrawLine(p1, p2);
 						Gizmos.DrawLine(p2, p3);
 						Gizmos.DrawLine(p3, p1);

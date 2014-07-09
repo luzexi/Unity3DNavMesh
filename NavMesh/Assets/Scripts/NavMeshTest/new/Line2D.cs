@@ -158,15 +158,26 @@ namespace Game.NavMesh
         /// </summary>
         /// <param name="lineTemp">判断对象</param>
         /// <returns>是否相等</returns>
-        public override bool Equals(object lineTemp)
+        public bool Equals(Line2D line)
         {
-            Line2D line = (Line2D)lineTemp;
-            if (line == null)
-            {
-                return false;
-            }
-
-            return (NMath.IsEqual(this.m_cStartPoint, line.m_cStartPoint) && NMath.IsEqual(this.m_cEndPoint, line.m_cEndPoint)); ;
+			//只是一个点
+			if (SGMath.IsEqualZero(line.m_cStartPoint - line.m_cEndPoint) ||
+			    SGMath.IsEqualZero(m_cStartPoint - m_cEndPoint))
+				return false;
+			
+			bool bEquals = NMath.IsEqualZero(m_cStartPoint - line.m_cStartPoint) ? true : NMath.IsEqualZero(m_cStartPoint - line.m_cEndPoint);
+			if (bEquals)
+			{
+				bEquals = NMath.IsEqualZero(m_cEndPoint - line.m_cStartPoint) ? true : NMath.IsEqualZero(m_cEndPoint - line.m_cEndPoint);
+			}
+			return bEquals;
+			//            Line2D line = (Line2D)lineTemp;
+			//            if (line == null)
+			//            {
+//                return false;
+//            }
+//
+//            return (NMath.IsEqual(this.m_cStartPoint, line.m_cStartPoint) && NMath.IsEqual(this.m_cEndPoint, line.m_cEndPoint)); ;
         }
 
         /// <summary>

@@ -270,6 +270,7 @@ namespace Game.NavMesh
             if (initRes != NavResCode.Success)
                 return initRes;
 
+			Debug.Log(allStartEdges.Count + " edges");
             int index = 0;
             int lastNeighborId = -1;
             Triangle lastTri = null;
@@ -291,7 +292,7 @@ namespace Game.NavMesh
                     bool isFindDt = FindDT(edge, out dtPoint);
                     if (!isFindDt)
                         continue;
-
+					Debug.Log(edge.GetStartPoint().ToString() + " - " + edge.GetEndPoint().ToString() + " - " + dtPoint.ToString());
                     Line2D lAD = new Line2D(edge.GetStartPoint(), dtPoint);
                     Line2D lDB = new Line2D(dtPoint, edge.GetEndPoint());
 
@@ -513,23 +514,21 @@ namespace Game.NavMesh
             PolyResCode resCode = NavUtil.UnionAllPolygon(ref polyAll);
             if (resCode != PolyResCode.Success)
                 return NavResCode.Failed;
-
             // 保存所有点和边
             foreach (Polygon poly in polyAll)
             {
                 if (poly.GetPoints().Count < 3)
                     continue;
-
                 AddPoint(poly.GetPoints());
                 AddEdge(poly.GetPoints());
 
                 // 更改算法，初始边只用孤岛的内边，这就强制要求使用的时候必须把可以行走的区域全部包围起来
-                if (poly.GetTag() != 0)
+                //if (poly.GetTag() != 0)
                 {
                     allStartEdges.Add(new Line2D(poly.GetPoints()[1], poly.GetPoints()[0]));
                 }
             }
-
+			Debug.Log(allStartEdges.Count + " alledges.");
             return NavResCode.Success;
         }
 

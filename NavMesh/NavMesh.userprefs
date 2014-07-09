@@ -1,0 +1,41 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/NavMeshTest/new/Line2D.cs">
+    <Files>
+      <File FileName="Assets/Scripts/NavMeshTest/old/Editor/EditorUnWalkable.cs" Line="179" Column="46" />
+      <File FileName="Assets/Scripts/NavMeshTest/old/Editor/EditorNavMesh.cs" Line="267" Column="31" />
+      <File FileName="Assets/Scripts/NavMeshTest/new/NavMonoEditor.cs" Line="182" Column="26" />
+      <File FileName="Assets/Scripts/NavMeshTest/old/UnWalkEditor.cs" Line="206" Column="41" />
+      <File FileName="Assets/Scripts/NavMeshTest/old/NavMeshGen.cs" Line="325" Column="40" />
+      <File FileName="Assets/Scripts/NavMeshTest/new/NavMeshGen.cs" Line="318" Column="40" />
+      <File FileName="Assets/Scripts/NavMeshTest/old/NavMeshDataStructure.cs" Line="171" Column="13" />
+      <File FileName="Assets/Scripts/NavMeshTest/new/Triangle.cs" Line="40" Column="9" />
+      <File FileName="Assets/Scripts/NavMeshTest/new/NavUtil.cs" Line="16" Column="9" />
+      <File FileName="Assets/Scripts/NavMeshTest/new/Line2D.cs" Line="167" Column="4" />
+      <File FileName="Assets/Scripts/NavMeshTest/old/SGMath.cs" Line="153" Column="5" />
+      <File FileName="Assets/Scripts/NavMeshTest/new/NMath.cs" Line="63" Column="9" />
+      <File FileName="Assets/Scripts/NavMeshTest/new/Polygon.cs" Line="234" Column="38" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/luzexi/Desktop/Work/Project/Unity3DNavMesh/NavMesh/Assets/Scripts/NavMeshTest/new/NavMeshGen.cs" line="295" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches>
+    <Watch file="Assets/Scripts/NavMeshTest/new/NavMeshGen.cs" line="456" offsetX="639" offsetY="6716" expression="allPoints._items" liveUpdate="False" />
+    <Watch file="Assets/Scripts/NavMeshTest/new/NavMeshGen.cs" line="458" offsetX="640" offsetY="6831" expression="point" liveUpdate="False" />
+    <Watch file="Assets/Scripts/NavMeshTest/new/Line2D.cs" line="80" offsetX="646" offsetY="1097" expression="this" liveUpdate="False" />
+    <Watch file="Assets/Scripts/NavMeshTest/new/Line2D.cs" line="80" offsetX="655" offsetY="1178" expression="point" liveUpdate="False" />
+    <Watch file="Assets/Scripts/NavMeshTest/new/NavMeshGen.cs" line="295" offsetX="1008" offsetY="4410" expression="edge" liveUpdate="False" />
+    <Watch file="Assets/Scripts/NavMeshTest/new/NavMeshGen.cs" line="295" offsetX="1008" offsetY="4410" expression="edge" liveUpdate="False" />
+    <Watch file="Assets/Scripts/NavMeshTest/new/NavMeshGen.cs" line="295" offsetX="1008" offsetY="4410" expression="edge" liveUpdate="False" />
+    <Watch file="Assets/Scripts/NavMeshTest/new/NavMeshGen.cs" line="295" offsetX="1008" offsetY="4410" expression="edge" liveUpdate="False" />
+    <Watch file="Assets/Scripts/NavMeshTest/new/NavMeshGen.cs" line="295" offsetX="1008" offsetY="4410" expression="edge" liveUpdate="False" />
+    <Watch file="Assets/Scripts/NavMeshTest/new/NavMeshGen.cs" line="295" offsetX="1008" offsetY="4410" expression="edge" liveUpdate="False" />
+    <Watch file="Assets/Scripts/NavMeshTest/new/NavMeshGen.cs" line="295" offsetX="1008" offsetY="4410" expression="dtPoint" liveUpdate="False" />
+    <Watch file="Assets/Scripts/NavMeshTest/new/NavMeshGen.cs" line="54" offsetX="516" offsetY="795" expression="allPoints" liveUpdate="False" />
+    <Watch file="Assets/Scripts/NavMeshTest/new/NavMeshGen.cs" line="295" offsetX="1008" offsetY="4410" expression="edge" liveUpdate="False" />
+    <Watch file="Assets/Scripts/NavMeshTest/new/NavMeshGen.cs" line="295" offsetX="1008" offsetY="4410" expression="edge" liveUpdate="False" />
+  </MonoDevelop.Ide.DebuggingService.PinnedWatches>
+</Properties>

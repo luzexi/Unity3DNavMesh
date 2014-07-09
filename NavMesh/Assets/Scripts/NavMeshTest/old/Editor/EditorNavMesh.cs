@@ -266,6 +266,7 @@ namespace Game.NavMesh
 			{
 				this.m_cNavMono.CreateNavMesh();
 			}
+			this.m_cNavMono.m_bShowMesh = GUILayout.Toggle(this.m_cNavMono.m_bShowMesh , "NavMesh Show");
 		}
 	}
 
