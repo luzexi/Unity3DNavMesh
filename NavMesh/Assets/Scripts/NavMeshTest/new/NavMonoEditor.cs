@@ -219,14 +219,33 @@ namespace Game.NavMesh
 
 //========================= save or load navmesh =========================
 
+		/// <summary>
+		/// Saves the nav mesh.
+		/// </summary>
+		/// <param name="path">Path.</param>
 		public void SaveNavMesh( string path )
 		{
-			//
+			NavResCode code = NavMeshGen.Instance.SaveNavMeshToFile(path , this.m_lstTriangle);
+			if( code != NavResCode.Success )
+			{
+				Debug.LogError( "save navmesh error: " + code.ToString());
+			}
 		}
 
+		/// <summary>
+		/// Loads the nav mesh.
+		/// </summary>
+		/// <param name="path">Path.</param>
 		public void LoadNavMesh( string path )
 		{
-			//
+			List<Triangle> lst;
+			NavResCode code = NavMeshGen.Instance.LoadNavMeshFromFile(path , out lst);
+			this.m_lstTriangle = lst;
+
+			if(code != NavResCode.Success)
+			{
+				Debug.LogError("load navmesh error: " + code.ToString());
+			}
 		}
 	}
 }

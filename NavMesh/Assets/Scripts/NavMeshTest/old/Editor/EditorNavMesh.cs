@@ -16,6 +16,8 @@ namespace Game.NavMesh
 	[CustomEditor(typeof(NavMonoEditor))]
 	public class EditorNavMesh : Editor
 	{
+		private const string UNWALK_EXTENSION = "unwalk";
+		private const string NAVMESH_EXTENSION = "navmesh";
 		private NavMonoEditor m_cNavMono = null;
 		public static EditState m_eState = EditState.StateOther;
 		public static GameObject m_cParent = null;
@@ -146,7 +148,7 @@ namespace Game.NavMesh
 						this.m_cNavMono.m_iSelGroup = GUILayout.SelectionGrid(
 							this.m_cNavMono.m_iSelGroup,
 							lst.ToArray(),1);
-						FocusEditPanel();
+						//FocusEditPanel();
 					}
 					GUILayout.EndScrollView();
 					
@@ -185,7 +187,7 @@ namespace Game.NavMesh
 							this.m_cNavMono.m_iSelArea = GUILayout.SelectionGrid(
 								this.m_cNavMono.m_iSelArea,
 								lst.ToArray(),1);
-							FocusEditPanel();
+//							FocusEditPanel();
 						}
 					}
 					GUILayout.EndScrollView();
@@ -232,21 +234,21 @@ namespace Game.NavMesh
 							this.m_cNavMono.m_iSelPoint = GUILayout.SelectionGrid(
 								this.m_cNavMono.m_iSelPoint,
 								lst.ToArray(),1);
-							FocusEditPanel();
+//							FocusEditPanel();
 						}
 					}
 					GUILayout.EndScrollView();
 					GUI.enabled = m_eState != EditState.StateEditArea;
-					if(GUILayout.Button("Editor Point"))
+					if(GUILayout.Button("Editor Point",GUILayout.Height(30)))
 					{
 						m_eState = EditState.StateEditArea;
 					}
 					GUI.enabled = m_eState == EditState.StateEditArea;
-					if(GUILayout.Button("Finish Point"))
+					if(GUILayout.Button("Finish Point",GUILayout.Height(30)))
 					{
 						m_eState = EditState.StateFinishArea;
 					}
-					if(GUILayout.Button("Delete Point"))
+					if(GUILayout.Button("Delete Point",GUILayout.Height(30)))
 					{
 						Debug.Log("delete point");
 						if(area != null )
@@ -262,11 +264,50 @@ namespace Game.NavMesh
 			}
 			EditorGUILayout.EndVertical();
 
-			if( GUILayout.Button("Create NavMesh"))
+
+			GUILayout.Label("NavMesh");
+			this.m_cNavMono.m_bShowMesh = GUILayout.Toggle(this.m_cNavMono.m_bShowMesh , "NavMesh Show");
+			if( GUILayout.Button("Create NavMesh",GUILayout.Height(30)))
 			{
 				this.m_cNavMono.CreateNavMesh();
 			}
-			this.m_cNavMono.m_bShowMesh = GUILayout.Toggle(this.m_cNavMono.m_bShowMesh , "NavMesh Show");
+
+			GUILayout.Label("Area Group Save/Load");
+			GUILayout.BeginHorizontal();
+			{
+				if( GUILayout.Button("Save AreaGroup",GUILayout.Height(30)))
+				{
+					Debug.Log("save area group");
+					string pathfile = EditorUtility.SaveFilePanel("Save Area Group" , Application.dataPath , "map" , UNWALK_EXTENSION);
+					NavEditAreaManager.sInstance.SaveAreaGroup(pathfile);
+				}
+				if( GUILayout.Button("Load AreaGroup",GUILayout.Height(30)))
+				{
+					Debug.Log("load area group");
+					string pathfile = EditorUtility.OpenFilePanel("Open Area Group" , Application.dataPath , UNWALK_EXTENSION);
+					NavEditAreaManager.sInstance.LoadAreaGroup(pathfile , m_cParent);
+				}
+			}
+			GUILayout.EndHorizontal();
+
+			GUILayout.Label("NavMesh Save/Load");
+			GUILayout.BeginHorizontal();
+			{
+				if(GUILayout.Button("Save NavMesh",GUILayout.Height(30)))
+				{
+					Debug.Log("save navmesh");
+					string pathfile = EditorUtility.SaveFilePanel("Save NavMesh" , Application.dataPath , "map" , NAVMESH_EXTENSION);
+					this.m_cNavMono.SaveNavMesh(pathfile);
+				}
+				if(GUILayout.Button("Load NavMesh",GUILayout.Height(30)))
+				{
+					Debug.Log("load navmesh");
+					string pathfile = EditorUtility.OpenFilePanel("Open NavMesh" , Application.dataPath , NAVMESH_EXTENSION);
+					this.m_cNavMono.LoadNavMesh(pathfile);
+				}
+			}
+			GUILayout.EndHorizontal();
+
 		}
 	}
 

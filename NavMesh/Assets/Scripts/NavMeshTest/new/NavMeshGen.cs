@@ -48,7 +48,7 @@ namespace Game.NavMesh
         }
 
         // version info
-        private const string NavMeshVersion = "SGNAVMESH_01";
+        private const string NAVMESH_VERSION = "SGNAVMESH_01";
 
         public List<Line2D> allEdges { get; set; }  //所有阻挡区域的边
         public List<Vector2> allPoints { get; set; }//所有顶点列表
@@ -80,7 +80,7 @@ namespace Game.NavMesh
             BinaryWriter binWriter = new BinaryWriter(fs);
 
             // save version
-            binWriter.Write(utf8.GetBytes(NavMeshVersion));
+            binWriter.Write(utf8.GetBytes(NAVMESH_VERSION));
             // save triangle count
             binWriter.Write(navTriangles.Count);
 
@@ -229,8 +229,8 @@ namespace Game.NavMesh
             try
             {
                 // 读取版本号
-                string fileVersion = new string(binReader.ReadChars(NavMeshVersion.Length));
-                if (fileVersion != NavMeshVersion)
+                string fileVersion = new string(binReader.ReadChars(NAVMESH_VERSION.Length));
+                if (fileVersion != NAVMESH_VERSION)
                     return NavResCode.VersionNotMatch;
                 // 读取导航三角形数量
                 int navCount = binReader.ReadInt32();
@@ -292,7 +292,7 @@ namespace Game.NavMesh
                     bool isFindDt = FindDT(edge, out dtPoint);
                     if (!isFindDt)
                         continue;
-					Debug.Log(edge.GetStartPoint().ToString() + " - " + edge.GetEndPoint().ToString() + " - " + dtPoint.ToString());
+					//Debug.Log(edge.GetStartPoint().ToString() + " - " + edge.GetEndPoint().ToString() + " - " + dtPoint.ToString());
                     Line2D lAD = new Line2D(edge.GetStartPoint(), dtPoint);
                     Line2D lDB = new Line2D(dtPoint, edge.GetEndPoint());
 
