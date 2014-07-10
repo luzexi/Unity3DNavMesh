@@ -161,8 +161,8 @@ namespace Game.NavMesh
         public bool Equals(Line2D line)
         {
 			//只是一个点
-			if (SGMath.IsEqualZero(line.m_cStartPoint - line.m_cEndPoint) ||
-			    SGMath.IsEqualZero(m_cStartPoint - m_cEndPoint))
+			if (NMath.IsEqualZero(line.m_cStartPoint - line.m_cEndPoint) ||
+			    NMath.IsEqualZero(m_cStartPoint - m_cEndPoint))
 				return false;
 			
 			bool bEquals = NMath.IsEqualZero(m_cStartPoint - line.m_cStartPoint) ? true : NMath.IsEqualZero(m_cStartPoint - line.m_cEndPoint);

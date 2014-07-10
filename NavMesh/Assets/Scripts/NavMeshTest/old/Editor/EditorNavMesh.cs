@@ -25,6 +25,7 @@ namespace Game.NavMesh
 		public enum EditState
 		{
 			StateEditArea,
+			StateFindArea,
 			StateFinishArea,
 			StateOther
 		}
@@ -60,7 +61,7 @@ namespace Game.NavMesh
 
 		void OnDisable()
 		{
-			if (m_eState == EditState.StateEditArea)
+			if (m_eState == EditState.StateEditArea || m_eState == EditState.StateFindArea)
 			{
 				if (this.m_cNavMono.gameObject != null)
 				{
@@ -76,6 +77,9 @@ namespace Game.NavMesh
 			this.m_cNavMono = null;
 		}
 
+		private static Vector3 sPos;
+		private static Vector3 ePos;
+		private static int m_iIndex = 0;
 		void OnSceneGUI()
 		{
 			if (Event.current == null)
@@ -116,6 +120,32 @@ namespace Game.NavMesh
 						this.m_cNavMono.m_iSelPoint = area.m_lstPoints.Count-1;
 					}
 					e.Use();
+				}
+			}
+			else if( m_eState == EditState.StateFindArea )
+			{
+				if (e.button == 0 && e.type == EventType.MouseDown)
+				{
+					Ray ray = HandleUtility.GUIPointToWorldRay(e.mousePosition);
+					//int layerMask = 1 << 9;
+					RaycastHit hit;
+					if (Physics.Raycast(ray.origin, ray.direction, out hit, Mathf.Infinity))
+					{
+						if( m_iIndex == 0 )
+						{
+							sPos = hit.point;
+							Debug.Log("spos " + sPos);
+							m_iIndex++;
+						}
+						else
+						{
+							m_iIndex = 0;
+							ePos = hit.point;
+							Debug.Log("epos" + ePos);
+							this.m_cNavMono.Seek(sPos , ePos);
+						}
+
+					}
 				}
 			}
 		}
@@ -243,7 +273,12 @@ namespace Game.NavMesh
 					{
 						m_eState = EditState.StateEditArea;
 					}
-					GUI.enabled = m_eState == EditState.StateEditArea;
+					GUI.enabled = m_eState != EditState.StateFindArea;
+					if(GUILayout.Button("Find Path",GUILayout.Height(30)))
+					{
+						m_eState = EditState.StateFindArea;
+					}
+					GUI.enabled = (m_eState == EditState.StateEditArea || m_eState == EditState.StateFindArea);
 					if(GUILayout.Button("Finish Point",GUILayout.Height(30)))
 					{
 						m_eState = EditState.StateFinishArea;

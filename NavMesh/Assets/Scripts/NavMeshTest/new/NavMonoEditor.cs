@@ -16,7 +16,8 @@ namespace Game.NavMesh
 	/// </summary>
 	public class NavMonoEditor : MonoBehaviour
 	{
-		private List<Triangle> m_lstTriangle = new List<Triangle>();
+		private List<Triangle> m_lstTriangle = new List<Triangle>();	//navmesh triangle
+		private List<Vector2> m_lstFindPath = new List<Vector2>();	//findPath;
 
 		public bool m_bShowMesh = true;	//is show mesh
 		public int m_iSelGroup;	//the selected group
@@ -40,6 +41,7 @@ namespace Game.NavMesh
 			DrawAllAreas();
 			DrawSelectPoint();
 			DrawNavMesh();
+			DrawFindPath();
 		}
 
 //========================== draw area ========================================
@@ -122,8 +124,10 @@ namespace Game.NavMesh
 
 			if( this.m_iSelPoint < 0 || this.m_iSelPoint >= area.m_lstPoints.Count )
 				return;
-			
-			Gizmos.DrawIcon(area.m_lstPoints[this.m_iSelPoint].transform.position, "point.tif");
+
+			Vector3 pos = area.m_lstPoints[this.m_iSelPoint].transform.position;
+			pos.y += 1;
+			Gizmos.DrawIcon( pos , "010.tif" );
 		}
 
 //======================= draw NavMesh ======================================
@@ -211,9 +215,6 @@ namespace Game.NavMesh
 			}
 
 			Debug.Log("triangle count "+ this.m_lstTriangle.Count);
-			foreach (Triangle item in this.m_lstTriangle)
-				Debug.Log(item.GetPoint(0) + " -- " + item.GetPoint(1) + " -- " + item.GetPoint(2));
-
 			Debug.Log("end!");
 		}
 
@@ -247,5 +248,46 @@ namespace Game.NavMesh
 				Debug.LogError("load navmesh error: " + code.ToString());
 			}
 		}
+
+//=============================== seeker test =================================		
+		/// <summary>
+		/// Draws the find path.
+		/// </summary>
+		public void DrawFindPath()
+		{
+			for( int i = 1 ; i < this.m_lstFindPath.Count ; i++)
+			{
+				Gizmos.color = Color.blue;
+				Vector3 spos = new Vector3(this.m_lstFindPath[i].x , 0 , this.m_lstFindPath[i].y);
+				Vector3 epos = new Vector3(this.m_lstFindPath[i-1].x , 0 , this.m_lstFindPath[i-1].y);
+				Gizmos.DrawLine(spos , epos);
+			}
+		}
+
+		/// <summary>
+		/// Seek the specified sPos and ePos.
+		/// </summary>
+		/// <param name="sPos">S position.</param>
+		/// <param name="ePos">E position.</param>
+		public void Seek( Vector3 sPos , Vector3 ePos )
+		{
+			//
+			List<NavTriangle> lst = new List<NavTriangle>();
+			foreach( Triangle item in this.m_lstTriangle )
+			{
+				NavTriangle navTri = item.CloneNavTriangle();
+				lst.Add(navTri);
+				//Debug.Log( "src " + item.GetGroupID() + " :" + item.GetNeighbor(0)+"--" + item.GetNeighbor(1) + "--" + item.GetNeighbor(2) );
+				//Debug.Log( "tar " + navTri.GetGroupID() + " :" + navTri.GetNeighbor(0)+"--" + navTri.GetNeighbor(1) + "--" + navTri.GetNeighbor(2) );
+			}
+			Seeker.GetInstance().NavMeshData = lst;
+			List<Vector2> lstpath;
+			Vector2 ssPos = new Vector2(sPos.x , sPos.z);
+			Vector2 eePos = new Vector2(ePos.x , ePos.z);
+			Seeker.GetInstance().Seek(ssPos ,eePos ,out lstpath , 1);
+			Debug.Log(lstpath.Count + " lstpath");
+			this.m_lstFindPath = lstpath;
+		}
 	}
+
 }

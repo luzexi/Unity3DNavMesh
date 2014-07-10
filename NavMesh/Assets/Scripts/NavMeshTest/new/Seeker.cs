@@ -37,6 +37,10 @@ namespace Game.NavMesh
         private const int END_POS_EXTEND_LENGTH = 2;    //终点位置容错长度
 
         private List<NavTriangle> m_lstTriangle;    //地图数据
+		public List<NavTriangle> NavMeshData
+		{
+			set{ this.m_lstTriangle = value;}
+		}
 
         private static Seeker s_cInstance;  //静态实例
 
@@ -55,7 +59,6 @@ namespace Game.NavMesh
                 s_cInstance = new Seeker();
             return s_cInstance;
         }
-
 
         /// <summary>
         /// 寻路
@@ -80,9 +83,12 @@ namespace Game.NavMesh
             if (res != PathResCode.Success)
                 return res;
 
+			foreach(NavTriangle item in pathTri)
+			{
+				Debug.Log(item.GetID() + " path");
+			}
 
-            List<Vector2> pathPoint;
-            res = CreateWayPoints(startPos, endPos, pathTri, out pathPoint, offset);
+			res = CreateWayPoints(startPos, endPos, pathTri, out path, offset);
             if (res != PathResCode.Success)
                 return res;
 
@@ -134,7 +140,7 @@ namespace Game.NavMesh
             startTri.SetSessionID(pathSessionId);
 
             openList.Add(startTri);
-
+			Debug.Log(startTri.GetGroupID() + "--" + endTri.GetGroupID() );
             while (openList.Count > 0)
             {
                 // 1. 把当前节点从开放列表删除, 加入到封闭列表
@@ -170,7 +176,7 @@ namespace Game.NavMesh
                         if (neighborTri == null || neighborTri.GetID() != neighborID)
                             return PathResCode.NavIDNotMatch;
                     }
-
+					Debug.Log(neighborTri.GetGroupID() + " -- " + startTri.GetGroupID() );
                     if (neighborTri.GetGroupID() == startTri.GetGroupID() )
                     {
                         if (neighborTri.GetSessionID() != pathSessionId)
@@ -397,6 +403,7 @@ namespace Game.NavMesh
                 {
                     NavTriangle nextTri = triPathList[i + 1];
                     tri.SetOutWallIndex(tri.GetWallIndex(nextTri.GetID()));
+					Debug.Log(tri.GetOutWallIndex() + " outwallindex");
                 }
             }
 

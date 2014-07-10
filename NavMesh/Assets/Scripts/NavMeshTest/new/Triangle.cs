@@ -19,10 +19,10 @@ namespace Game.NavMesh
     public class Triangle
     {
         //基础数据
-        private Vector2[] m_vecPoints;  //三角形定点列表
-        private int m_iID;  //三角形ID
-        private int m_iGroupID;   //三角形组ID
-        private int[] m_vecNeighbors;   //三角形邻居节点ID
+		protected Vector2[] m_vecPoints;  //三角形定点列表
+		protected int m_iID;  //三角形ID
+		protected int m_iGroupID;   //三角形组ID
+		protected int[] m_vecNeighbors;   //三角形邻居节点ID
         
         //计算数据
         protected Vector2 m_cCenter;  //三角形中心点
@@ -74,6 +74,23 @@ namespace Game.NavMesh
             //计算包围盒
             CalcCollider();
         }
+
+		public NavTriangle CloneNavTriangle()
+		{
+			NavTriangle tri = new NavTriangle();
+			//基础数据
+			Array.Copy(this.m_vecPoints,tri.m_vecPoints,this.m_vecPoints.Length);  //三角形定点列表
+			tri.m_iID = this.m_iID;  //三角形ID
+			tri.m_iGroupID = this.m_iGroupID;   //三角形组ID
+			Array.Copy( this.m_vecNeighbors , tri.m_vecNeighbors , this.m_vecNeighbors.Length);   //三角形邻居节点ID
+			
+			//计算数据
+			tri.m_cCenter = this.m_cCenter;  //三角形中心点
+			tri.m_cBoxCollider = this.m_cBoxCollider;    //三角形包围盒
+			//tri.m_vecWallDistance = this.m_vecWallDistance;  //三角形相邻两边的中点距离
+			Array.Copy(this.m_vecWallDistance , tri.m_vecWallDistance , this.m_vecWallDistance.Length);
+			return tri;
+		}
 
         /// <summary>
         /// 计算包围盒
@@ -180,7 +197,7 @@ namespace Game.NavMesh
                     break;
                 default:
                     newSide = new Line2D(this.m_vecPoints[0], this.m_vecPoints[1]);
-                    DEBUG.ERROR("Triangle:GetSide 获取索引[" + sideIndex + "]错误");
+                    //DEBUG.ERROR("Triangle:GetSide 获取索引[" + sideIndex + "]错误");
                     break;
             }
 

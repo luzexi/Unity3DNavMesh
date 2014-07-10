@@ -353,6 +353,7 @@ namespace Game.NavMesh
                     if (result != -1)
                     {
                         tri.SetNeighbor(result , triNext.GetID() );
+						Debug.Log("neighbor group : " + tri.GetGroupID() + "--" + triNext.GetGroupID() );
                     }
                 }
             }

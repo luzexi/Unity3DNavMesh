@@ -28,8 +28,8 @@ namespace Game.NavMesh
         private int m_iInWallIndex; //穿入边索引
         private int m_iOutWallIndex;    //穿出边索引
 
-        public NavTriangle(Vector2 pos1, Vector2 pos2, Vector2 pos3, int id, int groupid)
-            :base(pos1 , pos2 , pos3 , id , groupid)
+        public NavTriangle()
+            :base()
         {
             Reset();
         }
