@@ -1,25 +1,17 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/NavMeshTest/new/NavMonoEditor.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/NavMeshTest/new/Seeker.cs">
     <Files>
-      <File FileName="Assets/Scripts/NavMeshTest/old/Editor/EditorUnWalkable.cs" Line="205" Column="47" />
-      <File FileName="Assets/Scripts/NavMeshTest/old/Editor/EditorNavMesh.cs" Line="269" Column="94" />
-      <File FileName="Assets/Scripts/NavMeshTest/new/NavMonoEditor.cs" Line="142" Column="33" />
-      <File FileName="Assets/Scripts/NavMeshTest/old/UnWalkEditor.cs" Line="98" Column="66" />
-      <File FileName="Assets/Scripts/NavMeshTest/old/NavMeshGen.cs" Line="325" Column="40" />
-      <File FileName="Assets/Scripts/NavMeshTest/new/NavMeshGen.cs" Line="318" Column="40" />
-      <File FileName="Assets/Scripts/NavMeshTest/old/NavMeshDataStructure.cs" Line="171" Column="13" />
-      <File FileName="Assets/Scripts/NavMeshTest/new/Triangle.cs" Line="40" Column="9" />
-      <File FileName="Assets/Scripts/NavMeshTest/new/NavUtil.cs" Line="16" Column="9" />
-      <File FileName="Assets/Scripts/NavMeshTest/new/Line2D.cs" Line="161" Column="15" />
-      <File FileName="Assets/Scripts/NavMeshTest/old/SGMath.cs" Line="153" Column="5" />
-      <File FileName="Assets/Scripts/NavMeshTest/new/NMath.cs" Line="63" Column="9" />
-      <File FileName="Assets/Scripts/NavMeshTest/new/Polygon.cs" Line="234" Column="38" />
+      <File FileName="Assets/Scripts/NavMeshTest/old/NavMeshGen.cs" Line="282" Column="57" />
+      <File FileName="Assets/Scripts/NavMeshTest/new/NavMonoEditor.cs" Line="192" Column="23" />
+      <File FileName="Assets/Scripts/NavMeshTest/new/Seeker.cs" Line="88" Column="1" />
+      <File FileName="Assets/Scripts/NavMeshTest/new/NavMeshGen.cs" Line="521" Column="82" />
+      <File FileName="Assets/Scripts/NavMeshTest/new/Line2D.cs" Line="168" Column="28" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-      <Breakpoint file="/Users/luzexi/Desktop/Work/Project/Unity3DNavMesh/NavMesh/Assets/Scripts/NavMeshTest/new/NavMeshGen.cs" line="295" />
+      <Breakpoint file="/Users/luzexi/Desktop/Work/Project/Unity3DNavMesh/NavMesh/Assets/Scripts/NavMeshTest/old/PathFinder.cs" line="434" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches>
@@ -37,5 +29,10 @@
     <Watch file="Assets/Scripts/NavMeshTest/new/NavMeshGen.cs" line="54" offsetX="516" offsetY="795" expression="allPoints" liveUpdate="False" />
     <Watch file="Assets/Scripts/NavMeshTest/new/NavMeshGen.cs" line="295" offsetX="1008" offsetY="4410" expression="edge" liveUpdate="False" />
     <Watch file="Assets/Scripts/NavMeshTest/new/NavMeshGen.cs" line="295" offsetX="1008" offsetY="4410" expression="edge" liveUpdate="False" />
+    <Watch file="Assets/Scripts/NavMeshTest/new/Seeker.cs" line="449" offsetX="437" offsetY="6720" expression="outSide" liveUpdate="False" />
+    <Watch file="Assets/Scripts/NavMeshTest/new/Seeker.cs" line="117" offsetX="504" offsetY="1756" expression="startTri" liveUpdate="False" />
+    <Watch file="Assets/Scripts/NavMeshTest/new/Seeker.cs" line="119" offsetX="493" offsetY="1798" expression="endTri" liveUpdate="False" />
+    <Watch file="Assets/Scripts/NavMeshTest/new/Seeker.cs" line="177" offsetX="596" offsetY="2640" expression="startTri" liveUpdate="False" />
+    <Watch file="Assets/Scripts/NavMeshTest/new/Seeker.cs" line="177" offsetX="593" offsetY="2674" expression="neighborTri" liveUpdate="False" />
   </MonoDevelop.Ide.DebuggingService.PinnedWatches>
 </Properties>

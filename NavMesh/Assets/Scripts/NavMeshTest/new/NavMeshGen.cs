@@ -35,15 +35,15 @@ namespace Game.NavMesh
         // 使用者必须实现自己的加载数据函数，否则使用默认的C#的文件加载 [1/10/2012 Ivan]
         public delegate UnityEngine.Object GetResources(string fileName);
         // 更改为单例模式
-        static readonly NavMeshGen instance = new NavMeshGen();
+        static readonly NavMeshGen s_cInstance = new NavMeshGen();
 
         static NavMeshGen() { }
 
-        public static NavMeshGen Instance
+        public static NavMeshGen sInstance
         {
             get
             {
-                return instance;
+                return s_cInstance;
             }
         }
 
@@ -52,12 +52,11 @@ namespace Game.NavMesh
 
         public List<Line2D> allEdges { get; set; }  //所有阻挡区域的边
         public List<Vector2> allPoints { get; set; }//所有顶点列表
-        public List<Line2D> allStartEdges { get; set; } //所有起始边
+		public Line2D startEdge {get;set;}	//start edge.
 
         public NavMeshGen()
         {
             allEdges = new List<Line2D>();
-            allStartEdges = new List<Line2D>();
             allPoints = new List<Vector2>();
         }
 
@@ -260,7 +259,7 @@ namespace Game.NavMesh
         /// <param name="polyAll">所有阻挡区域</param>
         /// <param name="triAll">输出的导航网格</param>
         /// <returns></returns>
-        public NavResCode CreateNavMesh(List<Polygon> polyAll, ref List<Triangle> triAll)
+        public NavResCode CreateNavMesh(List<Polygon> polyAll , ref int id , int groupid , ref List<Triangle> triAll)
         {
             triAll.Clear();
             List<Line2D> allLines = new List<Line2D>();  //线段堆栈
@@ -270,15 +269,12 @@ namespace Game.NavMesh
             if (initRes != NavResCode.Success)
                 return initRes;
 
-			Debug.Log(allStartEdges.Count + " edges");
-            int index = 0;
             int lastNeighborId = -1;
             Triangle lastTri = null;
 
             //Step2.遍历边界边作为起点
-            for (int edgeIndex = 0; edgeIndex < allStartEdges.Count; edgeIndex++)
             {
-                Line2D sEdge = allStartEdges[edgeIndex];
+				Line2D sEdge = startEdge;
                 allLines.Add(sEdge);
                 Line2D edge = null;
 
@@ -292,12 +288,11 @@ namespace Game.NavMesh
                     bool isFindDt = FindDT(edge, out dtPoint);
                     if (!isFindDt)
                         continue;
-					//Debug.Log(edge.GetStartPoint().ToString() + " - " + edge.GetEndPoint().ToString() + " - " + dtPoint.ToString());
                     Line2D lAD = new Line2D(edge.GetStartPoint(), dtPoint);
                     Line2D lDB = new Line2D(dtPoint, edge.GetEndPoint());
 
                     //创建三角形
-                    Triangle delaunayTri = new Triangle(edge.GetStartPoint(), edge.GetEndPoint(), dtPoint, index++ , edgeIndex);
+					Triangle delaunayTri = new Triangle(edge.GetStartPoint(), edge.GetEndPoint(), dtPoint, id++ , groupid);
                     // 保存邻居节点
                     //                     if (lastNeighborId != -1)
                     //                     {
@@ -353,7 +348,6 @@ namespace Game.NavMesh
                     if (result != -1)
                     {
                         tri.SetNeighbor(result , triNext.GetID() );
-						Debug.Log("neighbor group : " + tri.GetGroupID() + "--" + triNext.GetGroupID() );
                     }
                 }
             }
@@ -510,7 +504,6 @@ namespace Game.NavMesh
         {
             allEdges = new List<Line2D>();
             allPoints = new List<Vector2>();
-            allStartEdges = new List<Line2D>();
 
             PolyResCode resCode = NavUtil.UnionAllPolygon(ref polyAll);
             if (resCode != PolyResCode.Success)
@@ -522,14 +515,10 @@ namespace Game.NavMesh
                     continue;
                 AddPoint(poly.GetPoints());
                 AddEdge(poly.GetPoints());
-
-                // 更改算法，初始边只用孤岛的内边，这就强制要求使用的时候必须把可以行走的区域全部包围起来
-                //if (poly.GetTag() != 0)
-                {
-                    allStartEdges.Add(new Line2D(poly.GetPoints()[1], poly.GetPoints()[0]));
-                }
             }
-			Debug.Log(allStartEdges.Count + " alledges.");
+
+			if(polyAll != null && polyAll.Count > 0 )
+				startEdge = new Line2D(polyAll[0].GetPoints()[0], polyAll[0].GetPoints()[1]);
             return NavResCode.Success;
         }
 

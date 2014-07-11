@@ -143,18 +143,7 @@ namespace Game.NavMesh
 				{
 					foreach (Triangle tri in m_lstTriangle)
 					{
-						if (tri.GetGroupID() == 0)
-						{
-							Gizmos.color = Color.blue;
-							//continue;
-						}
-						else if (tri.GetGroupID() == 1)
-						{
-							Gizmos.color = Color.grey;
-							//continue;
-						}
-						else if (tri.GetGroupID() == 2)
-							Gizmos.color = Color.black;
+						Gizmos.color = Color.black;
 
 						Vector3 p1 = new Vector3(tri.GetPoint(0).x, 0, tri.GetPoint(0).y);
 						Vector3 p2 = new Vector3(tri.GetPoint(1).x, 0, tri.GetPoint(1).y);
@@ -200,12 +189,14 @@ namespace Game.NavMesh
 
 			List<Triangle> lstTri = new List<Triangle>();
 			this.m_lstTriangle.Clear();
-			foreach( NavEditAreaGroup group in NavEditAreaManager.sInstance.m_lstAreaGroup )
+			int startTriID = 0;
+			for( int i = 0 ; i<NavEditAreaManager.sInstance.m_lstAreaGroup.Count ; i++)
 			{
+				NavEditAreaGroup group = NavEditAreaManager.sInstance.m_lstAreaGroup[i];
 				lstTri.Clear();
 				List<Polygon> areas = GetUnWalkAreas(group.m_lstArea);
 				Debug.Log(areas.Count + " polygon count");
-				NavResCode genResult = NavMeshGen.Instance.CreateNavMesh(areas , ref lstTri );
+				NavResCode genResult = NavMeshGen.sInstance.CreateNavMesh(areas , ref startTriID , i , ref lstTri );
 				foreach( Triangle item in lstTri )
 				{
 					this.m_lstTriangle.Add(item);
@@ -226,7 +217,7 @@ namespace Game.NavMesh
 		/// <param name="path">Path.</param>
 		public void SaveNavMesh( string path )
 		{
-			NavResCode code = NavMeshGen.Instance.SaveNavMeshToFile(path , this.m_lstTriangle);
+			NavResCode code = NavMeshGen.sInstance.SaveNavMeshToFile(path , this.m_lstTriangle);
 			if( code != NavResCode.Success )
 			{
 				Debug.LogError( "save navmesh error: " + code.ToString());
@@ -240,7 +231,7 @@ namespace Game.NavMesh
 		public void LoadNavMesh( string path )
 		{
 			List<Triangle> lst;
-			NavResCode code = NavMeshGen.Instance.LoadNavMeshFromFile(path , out lst);
+			NavResCode code = NavMeshGen.sInstance.LoadNavMeshFromFile(path , out lst);
 			this.m_lstTriangle = lst;
 
 			if(code != NavResCode.Success)
@@ -285,7 +276,7 @@ namespace Game.NavMesh
 			Vector2 ssPos = new Vector2(sPos.x , sPos.z);
 			Vector2 eePos = new Vector2(ePos.x , ePos.z);
 			Seeker.GetInstance().Seek(ssPos ,eePos ,out lstpath , 1);
-			Debug.Log(lstpath.Count + " lstpath");
+			//Debug.Log(lstpath.Count + " lstpath");
 			this.m_lstFindPath = lstpath;
 		}
 	}

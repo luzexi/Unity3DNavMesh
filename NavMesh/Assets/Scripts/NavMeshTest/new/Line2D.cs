@@ -164,20 +164,14 @@ namespace Game.NavMesh
 			if (NMath.IsEqualZero(line.m_cStartPoint - line.m_cEndPoint) ||
 			    NMath.IsEqualZero(m_cStartPoint - m_cEndPoint))
 				return false;
-			
+
+			//whatever the direction
 			bool bEquals = NMath.IsEqualZero(m_cStartPoint - line.m_cStartPoint) ? true : NMath.IsEqualZero(m_cStartPoint - line.m_cEndPoint);
 			if (bEquals)
 			{
 				bEquals = NMath.IsEqualZero(m_cEndPoint - line.m_cStartPoint) ? true : NMath.IsEqualZero(m_cEndPoint - line.m_cEndPoint);
 			}
 			return bEquals;
-			//            Line2D line = (Line2D)lineTemp;
-			//            if (line == null)
-			//            {
-//                return false;
-//            }
-//
-//            return (NMath.IsEqual(this.m_cStartPoint, line.m_cStartPoint) && NMath.IsEqual(this.m_cEndPoint, line.m_cEndPoint)); ;
         }
 
         /// <summary>

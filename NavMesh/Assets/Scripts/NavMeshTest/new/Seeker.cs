@@ -83,11 +83,6 @@ namespace Game.NavMesh
             if (res != PathResCode.Success)
                 return res;
 
-			foreach(NavTriangle item in pathTri)
-			{
-				Debug.Log(item.GetID() + " path");
-			}
-
 			res = CreateWayPoints(startPos, endPos, pathTri, out path, offset);
             if (res != PathResCode.Success)
                 return res;
@@ -129,7 +124,6 @@ namespace Game.NavMesh
             if (posErr != PathResCode.Success)
                 return posErr;
 
-
             //////////////////////////////////// A*算法 ///////////////////////////////////////
 
             int pathSessionId = 1;
@@ -140,7 +134,6 @@ namespace Game.NavMesh
             startTri.SetSessionID(pathSessionId);
 
             openList.Add(startTri);
-			Debug.Log(startTri.GetGroupID() + "--" + endTri.GetGroupID() );
             while (openList.Count > 0)
             {
                 // 1. 把当前节点从开放列表删除, 加入到封闭列表
@@ -176,7 +169,6 @@ namespace Game.NavMesh
                         if (neighborTri == null || neighborTri.GetID() != neighborID)
                             return PathResCode.NavIDNotMatch;
                     }
-					Debug.Log(neighborTri.GetGroupID() + " -- " + startTri.GetGroupID() );
                     if (neighborTri.GetGroupID() == startTri.GetGroupID() )
                     {
                         if (neighborTri.GetSessionID() != pathSessionId)
@@ -403,7 +395,6 @@ namespace Game.NavMesh
                 {
                     NavTriangle nextTri = triPathList[i + 1];
                     tri.SetOutWallIndex(tri.GetWallIndex(nextTri.GetID()));
-					Debug.Log(tri.GetOutWallIndex() + " outwallindex");
                 }
             }
 
