@@ -4,7 +4,7 @@
     <Files>
       <File FileName="Assets/Scripts/NavMeshTest/old/NavMeshGen.cs" Line="282" Column="57" />
       <File FileName="Assets/Scripts/NavMeshTest/new/NavMonoEditor.cs" Line="192" Column="23" />
-      <File FileName="Assets/Scripts/NavMeshTest/new/Seeker.cs" Line="88" Column="1" />
+      <File FileName="Assets/Scripts/NavMeshTest/new/Seeker.cs" Line="504" Column="61" />
       <File FileName="Assets/Scripts/NavMeshTest/new/NavMeshGen.cs" Line="521" Column="82" />
       <File FileName="Assets/Scripts/NavMeshTest/new/Line2D.cs" Line="168" Column="28" />
     </Files>
