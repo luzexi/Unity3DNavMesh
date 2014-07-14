@@ -1,38 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/NavMeshTest/new/Seeker.cs">
-    <Files>
-      <File FileName="Assets/Scripts/NavMeshTest/old/NavMeshGen.cs" Line="282" Column="57" />
-      <File FileName="Assets/Scripts/NavMeshTest/new/NavMonoEditor.cs" Line="192" Column="23" />
-      <File FileName="Assets/Scripts/NavMeshTest/new/Seeker.cs" Line="504" Column="61" />
-      <File FileName="Assets/Scripts/NavMeshTest/new/NavMeshGen.cs" Line="521" Column="82" />
-      <File FileName="Assets/Scripts/NavMeshTest/new/Line2D.cs" Line="168" Column="28" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/luzexi/Desktop/Work/Project/Unity3DNavMesh/NavMesh/Assets/Scripts/NavMeshTest/old/PathFinder.cs" line="434" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches>
-    <Watch file="Assets/Scripts/NavMeshTest/new/NavMeshGen.cs" line="456" offsetX="639" offsetY="6716" expression="allPoints._items" liveUpdate="False" />
-    <Watch file="Assets/Scripts/NavMeshTest/new/NavMeshGen.cs" line="458" offsetX="640" offsetY="6831" expression="point" liveUpdate="False" />
-    <Watch file="Assets/Scripts/NavMeshTest/new/Line2D.cs" line="80" offsetX="646" offsetY="1097" expression="this" liveUpdate="False" />
-    <Watch file="Assets/Scripts/NavMeshTest/new/Line2D.cs" line="80" offsetX="655" offsetY="1178" expression="point" liveUpdate="False" />
-    <Watch file="Assets/Scripts/NavMeshTest/new/NavMeshGen.cs" line="295" offsetX="1008" offsetY="4410" expression="edge" liveUpdate="False" />
-    <Watch file="Assets/Scripts/NavMeshTest/new/NavMeshGen.cs" line="295" offsetX="1008" offsetY="4410" expression="edge" liveUpdate="False" />
-    <Watch file="Assets/Scripts/NavMeshTest/new/NavMeshGen.cs" line="295" offsetX="1008" offsetY="4410" expression="edge" liveUpdate="False" />
-    <Watch file="Assets/Scripts/NavMeshTest/new/NavMeshGen.cs" line="295" offsetX="1008" offsetY="4410" expression="edge" liveUpdate="False" />
-    <Watch file="Assets/Scripts/NavMeshTest/new/NavMeshGen.cs" line="295" offsetX="1008" offsetY="4410" expression="edge" liveUpdate="False" />
-    <Watch file="Assets/Scripts/NavMeshTest/new/NavMeshGen.cs" line="295" offsetX="1008" offsetY="4410" expression="edge" liveUpdate="False" />
-    <Watch file="Assets/Scripts/NavMeshTest/new/NavMeshGen.cs" line="295" offsetX="1008" offsetY="4410" expression="dtPoint" liveUpdate="False" />
-    <Watch file="Assets/Scripts/NavMeshTest/new/NavMeshGen.cs" line="54" offsetX="516" offsetY="795" expression="allPoints" liveUpdate="False" />
-    <Watch file="Assets/Scripts/NavMeshTest/new/NavMeshGen.cs" line="295" offsetX="1008" offsetY="4410" expression="edge" liveUpdate="False" />
-    <Watch file="Assets/Scripts/NavMeshTest/new/NavMeshGen.cs" line="295" offsetX="1008" offsetY="4410" expression="edge" liveUpdate="False" />
-    <Watch file="Assets/Scripts/NavMeshTest/new/Seeker.cs" line="449" offsetX="437" offsetY="6720" expression="outSide" liveUpdate="False" />
-    <Watch file="Assets/Scripts/NavMeshTest/new/Seeker.cs" line="117" offsetX="504" offsetY="1756" expression="startTri" liveUpdate="False" />
-    <Watch file="Assets/Scripts/NavMeshTest/new/Seeker.cs" line="119" offsetX="493" offsetY="1798" expression="endTri" liveUpdate="False" />
-    <Watch file="Assets/Scripts/NavMeshTest/new/Seeker.cs" line="177" offsetX="596" offsetY="2640" expression="startTri" liveUpdate="False" />
-    <Watch file="Assets/Scripts/NavMeshTest/new/Seeker.cs" line="177" offsetX="593" offsetY="2674" expression="neighborTri" liveUpdate="False" />
-  </MonoDevelop.Ide.DebuggingService.PinnedWatches>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>
