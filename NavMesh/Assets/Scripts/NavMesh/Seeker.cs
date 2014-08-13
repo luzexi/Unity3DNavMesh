@@ -64,7 +64,7 @@ namespace Game.NavMesh
         /// 寻路
         /// </summary>
         /// <param name="strPos">起始位置</param>
-        /// <param name="endPos">终点位置</param>
+        /// <param name="endPos">终点位置</param> 
         /// <param name="path">输出路径点</param>
         /// <param name="offset">移动物体大小</param>
         /// <returns>寻路结果</returns>
@@ -88,15 +88,14 @@ namespace Game.NavMesh
             if (res != PathResCode.Success)
                 return res;
 
-
             return res;
         }
 
-        /// <summary>
-        /// 寻路路径三角形
-        /// </summary>
-        /// <param name="strPos">起始点</param>
-        /// <param name="endPos">终点</param>
+		/// <summary>
+		/// 寻路路径三角形
+		/// </summary>
+		/// <param name="strPos">起始点</param>
+		/// <param name="endPos">终点</param>
         /// <param name="pathTriangle">输出三角形</param>
         /// <param name="offset">移动物品大小</param>
         /// <returns>结果</returns>

@@ -13,7 +13,7 @@ namespace Game.NavMesh
     {
         //圆心
         public Vector2 center;
-
+		 
         //半径
         public float radius;
 

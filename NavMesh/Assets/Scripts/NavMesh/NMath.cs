@@ -116,6 +116,33 @@ namespace Game.NavMesh
             return new Circle(new Vector2(0, 0), 0);
         }
 
+		/// <summary>
+		/// Calculate the circle tangency.
+		/// </summary>
+		/// <returns>The circle tangency.</returns>
+		/// <param name="c">C.</param>
+		/// <param name="st">St.</param>
+		public static Vector2[] CalCircleTangency( Circle c , Vector2 st )
+		{
+			Vector2 dir;
+			float dis = (c.center - st).magnitude;
+			float temp= Mathf.Sqrt(dis*dis-c.radius*c.radius);
+			float sina=temp/dis;
+			float cosa=c.radius/dis;
+			dir.x=(st.x-c.center.x)/dis*c.radius;
+			dir.y=(st.y-c.center.y)/dis*c.radius;
+
+			Vector2[] res = new Vector2[2];
+
+			res[0].x = c.center.x+(dir.x*cosa-dir.y*sina);
+			res[0].y = c.center.y+(dir.x*sina+dir.y*cosa);
+			
+			res[1].x = c.center.x+(dir.x*cosa+dir.y*sina);
+			res[1].y = c.center.y+(-dir.x*sina+dir.y*cosa);
+
+			return res;
+		}
+
         /// <summary>
         /// 将线段终点延长
         /// </summary>
@@ -236,6 +263,71 @@ namespace Game.NavMesh
 
             return false;
         }
+
+		/// <summary>
+		/// Checks the cross.
+		/// </summary>
+		/// <returns><c>true</c>, if cross was checked, <c>false</c> otherwise.</returns>
+		/// <param name="line">Line.</param>
+		/// <param name="tri">Tri.</param>
+		public static bool CheckCross( Line2D line , Triangle tri )
+		{
+			for(int i = 0 ; i < 3 ; i++ )
+			{
+				Line2D lineTri = tri.GetSide(i);
+				if( CheckCross(line.GetStartPoint() , line.GetEndPoint() ,
+				               lineTri.GetStartPoint() , lineTri.GetEndPoint())
+				   )
+				{
+					return true;
+				}
+			}
+			return false;
+		}
+
+		/// <summary>
+		/// Checks the cross.
+		/// </summary>
+		/// <returns><c>true</c>, if cross was checked, <c>false</c> otherwise.</returns>
+		/// <param name="line">Line.</param>
+		/// <param name="cir">Cir.</param>
+		public static bool CheckCross( Line2D line , Circle cir )
+		{
+			CheckCross(line , cir.center , cir.radius);
+		}
+
+		/// <summary>
+		/// Checks the cross.
+		/// </summary>
+		/// <returns><c>true</c>, if cross was checked, <c>false</c> otherwise.</returns>
+		/// <param name="line">Line.</param>
+		/// <param name="pos">Position.</param>
+		/// <param name="radius">Radius.</param>
+		public static bool CheckCross( Line2D line , Vector2 pos , int radius )
+		{
+			float fDis = line.GetLength();
+			
+			Vector2 d;
+			d.x = (line.GetEndPoint().x - line.GetStartPoint().x) / fDis;
+			d.y = (line.GetEndPoint().y - line.GetStartPoint().y) / fDis;
+			
+			Vector2 E;
+			E.x = pos.x - line.GetStartPoint().x;
+			E.y = pos.y - line.GetStartPoint().y;
+			
+			float a = E.x * d.x + E.y * d.y;
+			float a2 = a * a;
+			
+			float e2 = E.x * E.x + E.y * E.y;
+			
+			float r2 = radius * radius;
+			
+			if ((r2 - e2 + a2) < 0)  
+			{  
+				return false;  
+			}
+			return true;
+		}
 
         /// <summary>
         /// r=multiply(sp,ep,op),得到(sp-op)*(ep-op)的叉积 
