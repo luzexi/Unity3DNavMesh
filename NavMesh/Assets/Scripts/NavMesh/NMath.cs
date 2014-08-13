@@ -293,7 +293,7 @@ namespace Game.NavMesh
 		/// <param name="cir">Cir.</param>
 		public static bool CheckCross( Line2D line , Circle cir )
 		{
-			CheckCross(line , cir.center , cir.radius);
+			return CheckCross(line , cir.center , cir.radius);
 		}
 
 		/// <summary>
@@ -303,7 +303,7 @@ namespace Game.NavMesh
 		/// <param name="line">Line.</param>
 		/// <param name="pos">Position.</param>
 		/// <param name="radius">Radius.</param>
-		public static bool CheckCross( Line2D line , Vector2 pos , int radius )
+		public static bool CheckCross( Line2D line , Vector2 pos , float radius )
 		{
 			float fDis = line.GetLength();
 			
