@@ -83,6 +83,7 @@ namespace Game.NavMesh
             if (res != PathResCode.Success)
                 return res;
 
+			//NavMonoEditor.m_lstTriPath = pathTri;
 			res = CreateWayPoints(startPos, endPos, pathTri, out path, offset);
             if (res != PathResCode.Success)
                 return res;
@@ -173,23 +174,28 @@ namespace Game.NavMesh
                     {
                         if (neighborTri.GetSessionID() != pathSessionId)
                         {
-                            // 4. 如果该相邻节点不在开放列表中,则将该节点添加到开放列表中, 
-                            //    并将该相邻节点的父节点设为当前节点,同时保存该相邻节点的G和F值;
-                            neighborTri.SetSessionID(pathSessionId);
-                            neighborTri.SetParentID(currNode.GetID());
-                            neighborTri.SetOpen(true);
-
-                            // 计算启发值h
-                            neighborTri.CalcHeuristic(endPos);
-                            // 计算三角形花费g
-                            neighborTri.SetGValue(currNode.GetGValue() + currNode.GetCost(neighborTri.GetID()) );
-
-                            //放入开放列表并排序
-                            openList.Add(neighborTri);
-                            openList.Sort(CompareTriWithGValue);
-
-                            //保存穿入边
-                            neighborTri.SetArrivalWall(currNode.GetID());
+							//judge the side is wide enough to to pass in offset
+							int sideIndex = neighborTri.GetNeighborWall(currNode);
+							if(  sideIndex != -1 && neighborTri.GetSide(sideIndex).GetLength() >= offset )
+							{
+								// 4. 如果该相邻节点不在开放列表中,则将该节点添加到开放列表中, 
+								//    并将该相邻节点的父节点设为当前节点,同时保存该相邻节点的G和F值;
+								neighborTri.SetSessionID(pathSessionId);
+								neighborTri.SetParentID(currNode.GetID());
+								neighborTri.SetOpen(true);
+								
+								// 计算启发值h
+								neighborTri.CalcHeuristic(endPos);
+								// 计算三角形花费g
+								neighborTri.SetGValue(currNode.GetGValue() + currNode.GetCost(neighborTri.GetID()) );
+								
+								//放入开放列表并排序
+								openList.Add(neighborTri);
+								openList.Sort(CompareTriWithGValue);
+								
+								//保存穿入边
+								neighborTri.SetArrivalWall(currNode.GetID());
+							}
                         }
                         else
                         {

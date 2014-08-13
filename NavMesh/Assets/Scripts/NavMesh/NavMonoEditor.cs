@@ -16,6 +16,8 @@ namespace Game.NavMesh
 	/// </summary>
 	public class NavMonoEditor : MonoBehaviour
 	{
+		public static NavTriangle StopTri;
+		public static List<NavTriangle> m_lstTriPath = new List<NavTriangle>();
 		private List<Triangle> m_lstTriangle = new List<Triangle>();	//navmesh triangle
 		private List<Vector2> m_lstFindPath = new List<Vector2>();	//findPath;
 
@@ -43,6 +45,7 @@ namespace Game.NavMesh
 			DrawSelectPoint();
 			DrawNavMesh();
 			DrawFindPath();
+			DrawPathTriangle();
 		}
 
 //========================== draw area ========================================
@@ -132,6 +135,39 @@ namespace Game.NavMesh
 			Vector3 pos = area.m_lstPoints[this.m_iSelPoint].transform.position;
 			pos.y += 1;
 			Gizmos.DrawIcon( pos , "010.tif" );
+		}
+
+//======================= draw editor find triangle ======================================
+		/// <summary>
+		/// Draws the path triangle.
+		/// </summary>
+		private void DrawPathTriangle()
+		{
+			if(m_lstTriPath != null && m_lstTriPath.Count > 0 )
+			{
+				foreach (NavTriangle tri in m_lstTriPath)
+				{
+					Gizmos.color = Color.blue;
+					
+					Vector3 p1 = new Vector3(tri.GetPoint(0).x, 5, tri.GetPoint(0).y);
+					Vector3 p2 = new Vector3(tri.GetPoint(1).x, 5, tri.GetPoint(1).y);
+					Vector3 p3 = new Vector3(tri.GetPoint(2).x, 5, tri.GetPoint(2).y);
+					Gizmos.DrawLine(p1, p2);
+					Gizmos.DrawLine(p2, p3);
+					Gizmos.DrawLine(p3, p1);
+				}
+			}
+			if(StopTri != null)
+			{
+				Gizmos.color = Color.red;
+				
+				Vector3 p1 = new Vector3(StopTri.GetPoint(0).x, 7, StopTri.GetPoint(0).y);
+				Vector3 p2 = new Vector3(StopTri.GetPoint(1).x, 7, StopTri.GetPoint(1).y);
+				Vector3 p3 = new Vector3(StopTri.GetPoint(2).x, 7, StopTri.GetPoint(2).y);
+				Gizmos.DrawLine(p1, p2);
+				Gizmos.DrawLine(p2, p3);
+				Gizmos.DrawLine(p3, p1);
+			}
 		}
 
 //======================= draw NavMesh ======================================
@@ -279,7 +315,7 @@ namespace Game.NavMesh
 			List<Vector2> lstpath;
 			Vector2 ssPos = new Vector2(sPos.x , sPos.z);
 			Vector2 eePos = new Vector2(ePos.x , ePos.z);
-			Seeker.GetInstance().Seek(ssPos ,eePos ,out lstpath , 1);
+			Seeker.GetInstance().Seek(ssPos ,eePos ,out lstpath , 40);
 			//Debug.Log(lstpath.Count + " lstpath");
 			this.m_lstFindPath = lstpath;
 		}
