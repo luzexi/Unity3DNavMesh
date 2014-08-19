@@ -20,10 +20,10 @@ namespace Game.NavMesh
             for (int i = 0; i < polys.Count; i++)
                 polys[i].CW();
 
-            for (int i = 0; i < polys.Count; i++)
+            for (int i = 1; i < polys.Count; i++)
             {
                 Polygon p1 = polys[i];
-                for (int j = 0; j < polys.Count; j++)
+                for (int j = 1; j < polys.Count; j++)
                 {
                     Polygon p2 = polys[j];
                     if ( i!=j && !p1.Equals(p2))

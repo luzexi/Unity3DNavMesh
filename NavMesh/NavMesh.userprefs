@@ -1,13 +1,18 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/NavMesh/Seeker.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/NavMesh/NavEditArea.cs">
     <Files>
-      <File FileName="Assets/Scripts/NavMesh/Seeker.cs" Line="86" Column="6" />
-      <File FileName="Assets/Scripts/NavMesh/NavTriangle.cs" Line="17" Column="34" />
-      <File FileName="Assets/Scripts/NavMesh/Triangle.cs" Line="212" Column="9" />
-      <File FileName="Assets/Scripts/NavMesh/Editor/EditorNavMesh.cs" Line="149" Column="26" />
-      <File FileName="Assets/Scripts/NavMesh/NavMonoEditor.cs" Line="318" Column="60" />
-      <File FileName="Assets/Scripts/NavMesh/NavMeshGen.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/NavMesh/Seeker.cs" Line="86" Column="43" />
+      <File FileName="Assets/Scripts/NavMesh/NavTriangle.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/NavMesh/Triangle.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/NavMesh/Editor/EditorNavMesh.cs" Line="21" Column="43" />
+      <File FileName="Assets/Scripts/NavMesh/NavMonoEditor.cs" Line="23" Column="3" />
+      <File FileName="Assets/Scripts/NavMesh/NavMeshGen.cs" Line="262" Column="34" />
+      <File FileName="Assets/Scripts/NavMesh/Circle.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/NavMesh/NMath.cs" Line="306" Column="67" />
+      <File FileName="Assets/Scripts/NavMesh/NavEditAreaManager.cs" Line="247" Column="1" />
+      <File FileName="Assets/Scripts/NavMesh/NavEditAreaGroup.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/NavMesh/NavEditArea.cs" Line="9" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -15,7 +20,7 @@
           <Node name="Assembly-CSharp" expanded="True">
             <Node name="Scripts" expanded="True">
               <Node name="NavMesh" expanded="True">
-                <Node name="Seeker.cs" selected="True" />
+                <Node name="NavEditArea.cs" selected="True" />
               </Node>
             </Node>
           </Node>
